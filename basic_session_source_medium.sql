@@ -11,7 +11,7 @@ WITH temp AS (
       IGNORE NULLS ORDER BY event_timestamp ASC LIMIT 1)[SAFE_OFFSET(0)], 
       '(none)') AS session_medium,
     SUM(ecommerce.purchase_revenue) AS revenue,
-    COUNTIF(event_name = 'purchase') AS transactions
+    COUNTIF(event_name = 'purchase') AS transactions --not unique
   FROM `tough-healer-395417.analytics_287163560.events_*`
   WHERE _TABLE_SUFFIX BETWEEN '20240701'AND '20240731'
   GROUP BY event_date, session_id, user_pseudo_id
