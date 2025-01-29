@@ -6,6 +6,6 @@
 
 2. Using ARRAY_AGG to grab the first source and medium in a session (not a perfect method when some UTMs are missing in an event)
 
-3. Average number of transactions per purchaser: [avg_transactions.sql]
+3. Average number of transactions per purchaser: [avg_transactions.sql](avg_transactions.sql)
    - The table is filtered to only include purchase events
    - We divide the total count (number of purchases) by count of distinct user_pseudo_ids (nubmer of purchasers) to get the average transactions per purchaser.
