@@ -4,11 +4,11 @@ WITH temp AS (
     user_pseudo_id AS user_id,
     COALESCE(
       ARRAY_AGG((CASE WHEN collected_traffic_source.gclid IS NOT NULL THEN 'google' ELSE collected_traffic_source.manual_source END) 
-      IGNORE NULLS ORDER BY event_timestamp ASC LIMIT 1)[SAFE_OFFSET(0)], 
+      IGNORE NULLS ORDER BY event_timestamp ASC LIMIT 1)[SAFE_OFFSET(0)], --ignore nulls can be removed if you want to capture direct source in landing page
       '(direct)') AS session_source,
     COALESCE(
       ARRAY_AGG((CASE WHEN collected_traffic_source.gclid IS NOT NULL THEN 'cpc' ELSE collected_traffic_source.manual_medium END) 
-      IGNORE NULLS ORDER BY event_timestamp ASC LIMIT 1)[SAFE_OFFSET(0)], 
+      IGNORE NULLS ORDER BY event_timestamp ASC LIMIT 1)[SAFE_OFFSET(0)], --ignore nulls can be removed if you want to capture direct source in landing page
       '(none)') AS session_medium,
     SUM(ecommerce.purchase_revenue) AS revenue,
     COUNTIF(event_name = 'purchase') AS transactions --not unique
