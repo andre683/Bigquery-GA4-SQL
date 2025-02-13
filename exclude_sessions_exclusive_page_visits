@@ -1,0 +1,7 @@
+SELECT DISTINCT
+    user_pseudo_id,
+    session_id
+  FROM ga4_events
+  QUALIFY 
+    LOGICAL_AND(REGEXP_CONTAINS(page.location, r'lppage1|lppage2|lpthankyoupage')) 
+    OVER (PARTITION BY user_pseudo_id, session_id) = FALSE
