@@ -15,3 +15,8 @@
 
 4. Values for a specific event name: [event_value.sql]
    - Using a scalar subquery with UNNEST(event_param), we extract the values for the custom event parameter 'event_category' from the custom event 'cancel_membership'.
+
+5. Top 10 items added to cart: [top_items_added.sql]
+   - Filtering 'add_to_cart' events, we list products added to cart by their 'item_id' and 'item_name' values
+   - We need to group repeated products using GROUP BY item_id, item_name
+   - Using COUNT DISTINCT for 'user_pseudo_id' gives us the unique user count for each product
