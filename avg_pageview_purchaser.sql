@@ -12,7 +12,7 @@ SELECT
     (purchase_event_count > 0) AS purchaser,
     COUNT(*) AS user_count,
     SUM(page_view_count) AS total_pageviews,
-    SUM(page_view_count) / COUNT(*) AS avg_pageviews
+    AVG(page_view_count) AS avg_pageviews
 FROM userinfo
 GROUP BY purchaser
 
