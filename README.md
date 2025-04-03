@@ -9,14 +9,14 @@
    - If either are null, (direct) / (none) is asigned using COALESCE.
    - If the event contains a gclid (Google Ads click id), google / cpc is assigned using a CASE statement.
 
-4. Average number of transactions per purchaser: [avg_transactions.sql](avg_transactions.sql)
+3. Average number of transactions per purchaser: [avg_transactions.sql](avg_transactions.sql)
    - The table is filtered to only include purchase events
    - We divide the total count (number of purchases) by count of distinct user_pseudo_ids (nubmer of purchasers) to get the average transactions per purchaser.
 
 4. Values for a specific event name: [event_value.sql](event_value.sql)
    - Using a scalar subquery with UNNEST(event_param), we extract the values for the custom event parameter 'event_category' from the custom event 'cancel_membership'.
 
-5. Top 10 items added to cart: [top_items_added.sql](top_items_added.sql) 
+5. Top 10 items added to cart: [top_items_added.sql](top_items_added.sql)
    - Filtering 'add_to_cart' events, we list products added to cart by their 'item_id' and 'item_name' values
    - We need to group repeated products using GROUP BY item_id, item_name
    - Using COUNT DISTINCT for 'user_pseudo_id' gives us the unique user count for each product
@@ -27,3 +27,5 @@
    - user_count is calculated counting all rows from the CTE (each row represents a unique user that had either a page_view or purchase event in their session)
    - total_page_views is calculated with a sum of page_vfiew_count
    - avg_page_views is calculated using the AVG function
+
+7. Sequence of pageviews: [pageview_sequence.sql](pageview_sequence.sql)
